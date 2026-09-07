@@ -1,0 +1,219 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <Compile Include="obj\Debug\net9.0\.NETCoreApp,Version=v9.0.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\net9.0\InventoryManagement.Web.AssemblyInfo.cs" />
+    <Compile Include="obj\Debug\net9.0\InventoryManagement.Web.GlobalUsings.g.cs" />
+    <Compile Include="obj\Debug\net9.0\InventoryManagement.Web.MvcApplicationPartsAssemblyInfo.cs" />
+    <Compile Include="obj\Debug\net9.0\InventoryManagement.Web.RazorAssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\net9.0\appsettings.Development.json" />
+    <Content Include="bin\Debug\net9.0\appsettings.json" />
+    <Content Include="bin\Debug\net9.0\InventoryManagement.Web.deps.json" />
+    <Content Include="bin\Debug\net9.0\InventoryManagement.Web.runtimeconfig.json" />
+    <Content Include="bin\Debug\net9.0\InventoryManagement.Web.staticwebassets.endpoints.json" />
+    <Content Include="bin\Debug\net9.0\InventoryManagement.Web.staticwebassets.runtime.json" />
+    <Content Include="obj\Debug\net9.0\ApiEndpoints.json" />
+    <Content Include="obj\Debug\net9.0\InventoryManagement.Web.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\net9.0\rbcswa.dswa.cache.json" />
+    <Content Include="obj\Debug\net9.0\rjimswa.dswa.cache.json" />
+    <Content Include="obj\Debug\net9.0\rjsmcshtml.dswa.cache.json" />
+    <Content Include="obj\Debug\net9.0\rjsmrazor.dswa.cache.json" />
+    <Content Include="obj\Debug\net9.0\rpswa.dswa.cache.json" />
+    <Content Include="obj\Debug\net9.0\scopedcss\bundle\InventoryManagement.Web.styles.css" />
+    <Content Include="obj\Debug\net9.0\scopedcss\projectbundle\InventoryManagement.Web.bundle.scp.css" />
+    <Content Include="obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css" />
+    <Content Include="obj\Debug\net9.0\staticwebassets.build.endpoints.json" />
+    <Content Include="obj\Debug\net9.0\staticwebassets.build.json" />
+    <Content Include="obj\Debug\net9.0\staticwebassets.development.json" />
+    <Content Include="obj\Debug\net9.0\staticwebassets.references.upToDateCheck.txt" />
+    <Content Include="obj\Debug\net9.0\staticwebassets.removed.txt" />
+    <Content Include="obj\Debug\net9.0\staticwebassets.upToDateCheck.txt" />
+    <Content Include="obj\InventoryManagement.Web.csproj.nuget.dgspec.json" />
+    <Content Include="obj\project.assets.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net9.0\AutoMapper.dll" />
+    <None Include="bin\Debug\net9.0\Azure.Core.dll" />
+    <None Include="bin\Debug\net9.0\Azure.Identity.dll" />
+    <None Include="bin\Debug\net9.0\FluentValidation.dll" />
+    <None Include="bin\Debug\net9.0\InventoryManagement.Application.dll" />
+    <None Include="bin\Debug\net9.0\InventoryManagement.Application.pdb" />
+    <None Include="bin\Debug\net9.0\InventoryManagement.Domain.dll" />
+    <None Include="bin\Debug\net9.0\InventoryManagement.Domain.pdb" />
+    <None Include="bin\Debug\net9.0\InventoryManagement.Infrastructure.dll" />
+    <None Include="bin\Debug\net9.0\InventoryManagement.Infrastructure.pdb" />
+    <None Include="bin\Debug\net9.0\InventoryManagement.Web.dll" />
+    <None Include="bin\Debug\net9.0\InventoryManagement.Web.exe" />
+    <None Include="bin\Debug\net9.0\InventoryManagement.Web.pdb" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.Internal.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Bcl.Cryptography.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Relational.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.EntityFrameworkCore.SqlServer.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Identity.Stores.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Logging.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Options.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Identity.Client.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Identity.Client.Extensions.Msal.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.OpenApi.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.SqlServer.Server.dll" />
+    <None Include="bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll" />
+    <None Include="bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll" />
+    <None Include="bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll" />
+    <None Include="bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll" />
+    <None Include="bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll" />
+    <None Include="bin\Debug\net9.0\System.ClientModel.dll" />
+    <None Include="bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll" />
+    <None Include="bin\Debug\net9.0\System.Diagnostics.DiagnosticSource.dll" />
+    <None Include="bin\Debug\net9.0\System.Drawing.Common.dll" />
+    <None Include="bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll" />
+    <None Include="bin\Debug\net9.0\System.Memory.Data.dll" />
+    <None Include="bin\Debug\net9.0\System.Runtime.Caching.dll" />
+    <None Include="bin\Debug\net9.0\System.Security.Cryptography.ProtectedData.dll" />
+    <None Include="bin\Debug\net9.0\System.Security.Permissions.dll" />
+    <None Include="bin\Debug\net9.0\System.Windows.Extensions.dll" />
+    <None Include="obj\Debug\net9.0\apphost.exe" />
+    <None Include="obj\Debug\net9.0\compressed\0aw12xnuw9-{0}-tdbxkamptv-tdbxkamptv.gz" />
+    <None Include="obj\Debug\net9.0\compressed\0ksuej65vp-{0}-hrwsygsryq-hrwsygsryq.gz" />
+    <None Include="obj\Debug\net9.0\compressed\13zcfwv893-{0}-y7v9cxd14o-y7v9cxd14o.gz" />
+    <None Include="obj\Debug\net9.0\compressed\1bay37a5v4-{0}-4v8eqarkd7-4v8eqarkd7.gz" />
+    <None Include="obj\Debug\net9.0\compressed\1d2vg26x6o-{0}-mrlpezrjn3-mrlpezrjn3.gz" />
+    <None Include="obj\Debug\net9.0\compressed\24ocb29xp7-{0}-83jwlth58m-83jwlth58m.gz" />
+    <None Include="obj\Debug\net9.0\compressed\2jj5rrddrw-{0}-63fj8s7r0e-63fj8s7r0e.gz" />
+    <None Include="obj\Debug\net9.0\compressed\2vq0njt5cy-{0}-nvvlpmu67g-nvvlpmu67g.gz" />
+    <None Include="obj\Debug\net9.0\compressed\2xy18gv5k3-{0}-d7shbmvgxk-d7shbmvgxk.gz" />
+    <None Include="obj\Debug\net9.0\compressed\3idk4dqjbj-{0}-pk9g2wxc8p-pk9g2wxc8p.gz" />
+    <None Include="obj\Debug\net9.0\compressed\3li5puj9in-{0}-c2jlpeoesf-c2jlpeoesf.gz" />
+    <None Include="obj\Debug\net9.0\compressed\3mk850che6-{0}-37tfw0ft22-37tfw0ft22.gz" />
+    <None Include="obj\Debug\net9.0\compressed\3q8t9a9s9f-{0}-b7pk76d08c-b7pk76d08c.gz" />
+    <None Include="obj\Debug\net9.0\compressed\3svu224ek5-{0}-r4e9w2rdcm-r4e9w2rdcm.gz" />
+    <None Include="obj\Debug\net9.0\compressed\3voqkiy29g-{0}-fvhpjtyr6v-fvhpjtyr6v.gz" />
+    <None Include="obj\Debug\net9.0\compressed\3wt9uncdra-{0}-lcd1t2u6c8-lcd1t2u6c8.gz" />
+    <None Include="obj\Debug\net9.0\compressed\427oqbvjah-{0}-jd9uben2k1-jd9uben2k1.gz" />
+    <None Include="obj\Debug\net9.0\compressed\5z1iqq7lt3-{0}-6pdc2jztkx-6pdc2jztkx.gz" />
+    <None Include="obj\Debug\net9.0\compressed\6oir86k9yo-{0}-icflxg07a1-icflxg07a1.gz" />
+    <None Include="obj\Debug\net9.0\compressed\7hlsc6ni9b-{0}-s35ty4nyc5-s35ty4nyc5.gz" />
+    <None Include="obj\Debug\net9.0\compressed\7k94onig0h-{0}-c2oey78nd0-c2oey78nd0.gz" />
+    <None Include="obj\Debug\net9.0\compressed\84nuoqpe2r-{0}-notf2xhcfb-notf2xhcfb.gz" />
+    <None Include="obj\Debug\net9.0\compressed\8nji1ijl81-{0}-v0zj4ognzu-v0zj4ognzu.gz" />
+    <None Include="obj\Debug\net9.0\compressed\9rctcuksh4-{0}-bqjiyaj88i-bqjiyaj88i.gz" />
+    <None Include="obj\Debug\net9.0\compressed\afxkfq43uw-{0}-ag7o75518u-ag7o75518u.gz" />
+    <None Include="obj\Debug\net9.0\compressed\algvdc0p2y-{0}-o1o13a6vjx-o1o13a6vjx.gz" />
+    <None Include="obj\Debug\net9.0\compressed\alx86gtl41-{0}-2z0ns9nrw6-2z0ns9nrw6.gz" />
+    <None Include="obj\Debug\net9.0\compressed\au6vgo2jql-{0}-6cfz1n2cew-6cfz1n2cew.gz" />
+    <None Include="obj\Debug\net9.0\compressed\bwt7p8lsoq-{0}-b9sayid5wm-b9sayid5wm.gz" />
+    <None Include="obj\Debug\net9.0\compressed\bx87r3ayuk-{0}-pj5nd1wqec-pj5nd1wqec.gz" />
+    <None Include="obj\Debug\net9.0\compressed\c6tce0m8op-{0}-kbrnm935zg-kbrnm935zg.gz" />
+    <None Include="obj\Debug\net9.0\compressed\ct7jcj6i45-{0}-lzl9nlhx6b-lzl9nlhx6b.gz" />
+    <None Include="obj\Debug\net9.0\compressed\cwxfne5r0r-{0}-xtxxf3hu2r-xtxxf3hu2r.gz" />
+    <None Include="obj\Debug\net9.0\compressed\da7paz08bn-{0}-ub07r2b239-ub07r2b239.gz" />
+    <None Include="obj\Debug\net9.0\compressed\dqdhsypl65-{0}-fsbi9cje9m-fsbi9cje9m.gz" />
+    <None Include="obj\Debug\net9.0\compressed\f35jthlzmk-{0}-rzd6atqjts-rzd6atqjts.gz" />
+    <None Include="obj\Debug\net9.0\compressed\fahc85uqxv-{0}-j5mq2jizvt-j5mq2jizvt.gz" />
+    <None Include="obj\Debug\net9.0\compressed\h7ysggh48u-{0}-06098lyss8-06098lyss8.gz" />
+    <None Include="obj\Debug\net9.0\compressed\hvmu6y5r3d-{0}-khv3u5hwcm-khv3u5hwcm.gz" />
+    <None Include="obj\Debug\net9.0\compressed\ij8cy95kl6-{0}-aexeepp0ev-aexeepp0ev.gz" />
+    <None Include="obj\Debug\net9.0\compressed\j4zy0ti1ud-{0}-muycvpuwrr-muycvpuwrr.gz" />
+    <None Include="obj\Debug\net9.0\compressed\kac82tbkg0-{0}-87fc7y1x7t-87fc7y1x7t.gz" />
+    <None Include="obj\Debug\net9.0\compressed\kp653d7um2-{0}-493y06b0oq-493y06b0oq.gz" />
+    <None Include="obj\Debug\net9.0\compressed\lb6vq7p356-{0}-46ein0sx1k-46ein0sx1k.gz" />
+    <None Include="obj\Debug\net9.0\compressed\lg645ubm6d-{0}-icflxg07a1-icflxg07a1.gz" />
+    <None Include="obj\Debug\net9.0\compressed\m2w0mmfhbw-{0}-ft3s53vfgj-ft3s53vfgj.gz" />
+    <None Include="obj\Debug\net9.0\compressed\my4zfefni9-{0}-iovd86k7lj-iovd86k7lj.gz" />
+    <None Include="obj\Debug\net9.0\compressed\o7jbyjtk1c-{0}-47otxtyo56-47otxtyo56.gz" />
+    <None Include="obj\Debug\net9.0\compressed\o85en6asef-{0}-h1s4sie4z3-h1s4sie4z3.gz" />
+    <None Include="obj\Debug\net9.0\compressed\ox3povmpha-{0}-vr1egmr9el-vr1egmr9el.gz" />
+    <None Include="obj\Debug\net9.0\compressed\pz6ykwkszf-{0}-mlv21k5csn-mlv21k5csn.gz" />
+    <None Include="obj\Debug\net9.0\compressed\rvmv5xsa2m-{0}-0i3buxo5is-0i3buxo5is.gz" />
+    <None Include="obj\Debug\net9.0\compressed\t3ytsv410t-{0}-61n19gt1b8-61n19gt1b8.gz" />
+    <None Include="obj\Debug\net9.0\compressed\t8tzbdq8x8-{0}-ausgxo2sd3-ausgxo2sd3.gz" />
+    <None Include="obj\Debug\net9.0\compressed\tfdy3cqntq-{0}-ttgo8qnofa-ttgo8qnofa.gz" />
+    <None Include="obj\Debug\net9.0\compressed\uggcl5w22r-{0}-jj8uyg4cgr-jj8uyg4cgr.gz" />
+    <None Include="obj\Debug\net9.0\compressed\uqo69cj099-{0}-dxx9fxp4il-dxx9fxp4il.gz" />
+    <None Include="obj\Debug\net9.0\compressed\vlx03sgefn-{0}-erw9l3u2r3-erw9l3u2r3.gz" />
+    <None Include="obj\Debug\net9.0\compressed\w479xng41s-{0}-ee0r1s7dh0-ee0r1s7dh0.gz" />
+    <None Include="obj\Debug\net9.0\compressed\wcnmp4aun5-{0}-356vix0kms-356vix0kms.gz" />
+    <None Include="obj\Debug\net9.0\compressed\wenzkcci8g-{0}-0j3bgjxly4-0j3bgjxly4.gz" />
+    <None Include="obj\Debug\net9.0\compressed\xvjmbvds6i-{0}-cosvhxvwiu-cosvhxvwiu.gz" />
+    <None Include="obj\Debug\net9.0\compressed\xwso9lon7y-{0}-k8d9w2qqmf-k8d9w2qqmf.gz" />
+    <None Include="obj\Debug\net9.0\compressed\yukml7qwfp-{0}-x0q3zqp4vz-x0q3zqp4vz.gz" />
+    <None Include="obj\Debug\net9.0\Inventor.3826537B.Up2Date" />
+    <None Include="obj\Debug\net9.0\InventoryManagement.Web.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net9.0\InventoryManagement.Web.assets.cache" />
+    <None Include="obj\Debug\net9.0\InventoryManagement.Web.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\net9.0\InventoryManagement.Web.csproj.BuildWithSkipAnalyzers" />
+    <None Include="obj\Debug\net9.0\InventoryManagement.Web.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\net9.0\InventoryManagement.Web.dll" />
+    <None Include="obj\Debug\net9.0\InventoryManagement.Web.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="obj\Debug\net9.0\InventoryManagement.Web.genruntimeconfig.cache" />
+    <None Include="obj\Debug\net9.0\InventoryManagement.Web.MvcApplicationPartsAssemblyInfo.cache" />
+    <None Include="obj\Debug\net9.0\InventoryManagement.Web.pdb" />
+    <None Include="obj\Debug\net9.0\InventoryManagement.Web.RazorAssemblyInfo.cache" />
+    <None Include="obj\Debug\net9.0\refint\InventoryManagement.Web.dll" />
+    <None Include="obj\Debug\net9.0\ref\InventoryManagement.Web.dll" />
+    <None Include="obj\Debug\net9.0\staticwebassets.build.json.cache" />
+    <None Include="obj\Debug\net9.0\swae.build.ex.cache" />
+    <None Include="obj\InventoryManagement.Web.csproj.nuget.g.props" />
+    <None Include="obj\InventoryManagement.Web.csproj.nuget.g.targets" />
+    <None Include="obj\project.nuget.cache" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InventoryManagement.Application\InventoryManagement.Application.csproj" />
+    <ProjectReference Include="..\InventoryManagement.Infrastructure\InventoryManagement.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.19" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\" />
+    <Folder Include="Filters\" />
+    <Folder Include="Middleware\" />
+    <Folder Include="obj\Debug\net9.0\staticwebassets\" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>
