@@ -24,7 +24,7 @@ public class Product : AuditableEntity
 
     public int MinimumStockLevel { get; set; }
 
-    public bool IsActive { get; set; } = true;
+  
 
     public Category Category { get; set; } = null!;
 

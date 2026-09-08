@@ -1,38 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <ItemGroup>
-    <Compile Include="obj\Debug\net9.0\.NETCoreApp,Version=v9.0.AssemblyAttributes.cs" />
-    <Compile Include="obj\Debug\net9.0\InventoryManagement.Application.AssemblyInfo.cs" />
-    <Compile Include="obj\Debug\net9.0\InventoryManagement.Application.GlobalUsings.g.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="bin\Debug\net9.0\InventoryManagement.Application.deps.json" />
-    <Content Include="obj\Debug\net9.0\InventoryManagement.Application.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\InventoryManagement.Application.csproj.nuget.dgspec.json" />
-    <Content Include="obj\project.assets.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="bin\Debug\net9.0\InventoryManagement.Application.dll" />
-    <None Include="bin\Debug\net9.0\InventoryManagement.Application.pdb" />
-    <None Include="bin\Debug\net9.0\InventoryManagement.Domain.dll" />
-    <None Include="bin\Debug\net9.0\InventoryManagement.Domain.pdb" />
-    <None Include="obj\Debug\net9.0\Inventor.0D5EB3FB.Up2Date" />
-    <None Include="obj\Debug\net9.0\InventoryManagement.Application.AssemblyInfoInputs.cache" />
-    <None Include="obj\Debug\net9.0\InventoryManagement.Application.assets.cache" />
-    <None Include="obj\Debug\net9.0\InventoryManagement.Application.csproj.AssemblyReference.cache" />
-    <None Include="obj\Debug\net9.0\InventoryManagement.Application.csproj.BuildWithSkipAnalyzers" />
-    <None Include="obj\Debug\net9.0\InventoryManagement.Application.csproj.CoreCompileInputs.cache" />
-    <None Include="obj\Debug\net9.0\InventoryManagement.Application.dll" />
-    <None Include="obj\Debug\net9.0\InventoryManagement.Application.GeneratedMSBuildEditorConfig.editorconfig" />
-    <None Include="obj\Debug\net9.0\InventoryManagement.Application.pdb" />
-    <None Include="obj\Debug\net9.0\refint\InventoryManagement.Application.dll" />
-    <None Include="obj\Debug\net9.0\ref\InventoryManagement.Application.dll" />
-    <None Include="obj\InventoryManagement.Application.csproj.nuget.g.props" />
-    <None Include="obj\InventoryManagement.Application.csproj.nuget.g.targets" />
-    <None Include="obj\project.nuget.cache" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\InventoryManagement.Domain\InventoryManagement.Domain.csproj" />
@@ -45,10 +12,6 @@
 
   <ItemGroup>
     <Folder Include="Common\" />
-    <Folder Include="DTOs\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Mapping\" />
-    <Folder Include="Services\" />
     <Folder Include="Validators\" />
   </ItemGroup>
 

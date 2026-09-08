@@ -4,15 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using InventoryManagement.Domain.Common;
+namespace InventoryManagement.Application.DTOs.Units;
 
-namespace InventoryManagement.Domain.Entities;
-
-public class Unit : AuditableEntity
+public class UnitCreateDto
 {
     public string Name { get; set; } = string.Empty;
 
     public string? ShortName { get; set; }
-
-    public ICollection<Product> Products { get; set; } = new List<Product>();
 }

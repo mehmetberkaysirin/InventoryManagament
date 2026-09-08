@@ -1,0 +1,25 @@
+﻿@model InventoryManagement.Application.DTOs.Categories.CategoryUpdateDto
+
+<h2>Kategori Düzenle</h2>
+
+<form asp-action="Edit" method="post">
+
+    <input asp-for="Id" type="hidden" />
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description"
+                  class="form-control"></textarea>
+    </div>
+
+    <button type="submit"
+            class="btn btn-primary">
+        Güncelle
+    </button>
+
+</form>

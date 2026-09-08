@@ -1,7 +1,35 @@
+
+using InventoryManagement.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
+using AutoMapper;
+using InventoryManagement.Application.Mapping;
+using InventoryManagement.Application.Interfaces.Repositories;
+using InventoryManagement.Application.Interfaces.Services;
+using InventoryManagement.Application.Services;
+using InventoryManagement.Infrastructure.Repositories;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
+
 // Add services to the container.
+
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+builder.Services.AddScoped<IBrandRepository, BrandRepository>();
+builder.Services.AddScoped<IBrandService, BrandService>();
+
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile<CategoryProfile>();
+    cfg.AddProfile<BrandProfile>();
+});
 
 var app = builder.Build();
 
@@ -27,3 +55,4 @@ app.MapControllerRoute(
 
 
 app.Run();
+

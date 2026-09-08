@@ -4,17 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using InventoryManagement.Domain.Common;
+namespace InventoryManagement.Application.DTOs.Brands;
 
-namespace InventoryManagement.Domain.Entities;
-
-public class Category : AuditableEntity
+public class BrandCreateDto
 {
     public string Name { get; set; } = string.Empty;
 
     public string? Description { get; set; }
-
-  
-
-    public ICollection<Product> Products { get; set; } = new List<Product>();
 }

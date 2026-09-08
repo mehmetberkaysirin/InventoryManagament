@@ -1,17 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <Compile Include="obj\Debug\net9.0\.NETCoreApp,Version=v9.0.AssemblyAttributes.cs" />
-    <Compile Include="obj\Debug\net9.0\InventoryManagement.Infrastructure.AssemblyInfo.cs" />
-    <Compile Include="obj\Debug\net9.0\InventoryManagement.Infrastructure.GlobalUsings.g.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="bin\Debug\net9.0\InventoryManagement.Infrastructure.deps.json" />
-    <Content Include="bin\Debug\net9.0\InventoryManagement.Infrastructure.runtimeconfig.json" />
-    <Content Include="obj\Debug\net9.0\InventoryManagement.Infrastructure.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\InventoryManagement.Infrastructure.csproj.nuget.dgspec.json" />
-    <Content Include="obj\project.assets.json" />
+    <Compile Remove="bin\**" />
+    <Compile Remove="obj\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <EmbeddedResource Remove="obj\**" />
+    <None Remove="bin\**" />
+    <None Remove="obj\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,42 +21,20 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.19" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.19">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Authentication\" />
     <Folder Include="Caching\" />
-    <Folder Include="Data\Configurations\" />
     <Folder Include="Data\Migrations\" />
     <Folder Include="Email\" />
     <Folder Include="FileStorage\" />
-    <Folder Include="Identity\" />
+    <Folder Include="Interfaces\Repositories\" />
     <Folder Include="Reporting\" />
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="bin\Debug\net9.0\InventoryManagement.Application.dll" />
-    <None Include="bin\Debug\net9.0\InventoryManagement.Application.pdb" />
-    <None Include="bin\Debug\net9.0\InventoryManagement.Domain.dll" />
-    <None Include="bin\Debug\net9.0\InventoryManagement.Domain.pdb" />
-    <None Include="bin\Debug\net9.0\InventoryManagement.Infrastructure.dll" />
-    <None Include="bin\Debug\net9.0\InventoryManagement.Infrastructure.pdb" />
-    <None Include="obj\Debug\net9.0\Inventor.D66612EB.Up2Date" />
-    <None Include="obj\Debug\net9.0\InventoryManagement.Infrastructure.AssemblyInfoInputs.cache" />
-    <None Include="obj\Debug\net9.0\InventoryManagement.Infrastructure.assets.cache" />
-    <None Include="obj\Debug\net9.0\InventoryManagement.Infrastructure.csproj.AssemblyReference.cache" />
-    <None Include="obj\Debug\net9.0\InventoryManagement.Infrastructure.csproj.BuildWithSkipAnalyzers" />
-    <None Include="obj\Debug\net9.0\InventoryManagement.Infrastructure.csproj.CoreCompileInputs.cache" />
-    <None Include="obj\Debug\net9.0\InventoryManagement.Infrastructure.dll" />
-    <None Include="obj\Debug\net9.0\InventoryManagement.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig" />
-    <None Include="obj\Debug\net9.0\InventoryManagement.Infrastructure.genruntimeconfig.cache" />
-    <None Include="obj\Debug\net9.0\InventoryManagement.Infrastructure.pdb" />
-    <None Include="obj\Debug\net9.0\refint\InventoryManagement.Infrastructure.dll" />
-    <None Include="obj\Debug\net9.0\ref\InventoryManagement.Infrastructure.dll" />
-    <None Include="obj\InventoryManagement.Infrastructure.csproj.nuget.g.props" />
-    <None Include="obj\InventoryManagement.Infrastructure.csproj.nuget.g.targets" />
-    <None Include="obj\project.nuget.cache" />
   </ItemGroup>
 
   <PropertyGroup>
