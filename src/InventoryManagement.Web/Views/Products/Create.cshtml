@@ -1,0 +1,53 @@
+﻿@model InventoryManagement.Web.ViewModels.Products.ProductCreateViewModel
+
+<h2>Ürün Ekle</h2>
+
+<form asp-action="Create" method="post">
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Ürün Adı</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Barcode" class="form-label">Barkod</label>
+        <input asp-for="Barcode" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Açıklama</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CategoryId" class="form-label">Kategori</label>
+        <select asp-for="CategoryId"
+                asp-items="Model.Categories"
+                class="form-select">
+            <option value="">Kategori Seçiniz</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="BrandId" class="form-label">Marka</label>
+        <select asp-for="BrandId"
+                asp-items="Model.Brands"
+                class="form-select">
+            <option value="">Marka Seçiniz</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="UnitId" class="form-label">Birim</label>
+        <select asp-for="UnitId"
+                asp-items="Model.Units"
+                class="form-select">
+            <option value="">Birim Seçiniz</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Kaydet
+    </button>
+
+</form>

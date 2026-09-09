@@ -1,0 +1,38 @@
+﻿@model List<InventoryManagement.Application.DTOs.Products.ProductListDto>
+
+<h2>Ürünler</h2>
+
+<a asp-action="Create" class="btn btn-success mb-3">
+    Yeni Ürün
+</a>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Ürün Adı</th>
+            <th>Barkod</th>
+            <th>Kategori</th>
+            <th>Marka</th>
+            <th>Birim</th>
+            <th>Aktif</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Barcode</td>
+                <td>@item.CategoryName</td>
+                <td>@item.BrandName</td>
+                <td>@item.UnitName</td>
+                <td>@item.IsActive</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
