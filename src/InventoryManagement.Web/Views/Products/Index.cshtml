@@ -16,6 +16,7 @@
             <th>Marka</th>
             <th>Birim</th>
             <th>Aktif</th>
+            <th>İşlemler</th>
         </tr>
     </thead>
 
@@ -30,6 +31,28 @@
                 <td>@item.BrandName</td>
                 <td>@item.UnitName</td>
                 <td>@item.IsActive</td>
+                <td>
+
+                    <a asp-action="Edit"
+                       asp-route-id="@item.Id"
+                       class="btn btn-warning btn-sm">
+                        Düzenle
+                    </a>
+
+                    <form asp-action="Delete"
+                          asp-route-id="@item.Id"
+                          method="post"
+                          style="display:inline;"
+                          onsubmit="return confirm('Bu ürünü silmek istediğinize emin misiniz?');">
+
+                        <button type="submit"
+                                class="btn btn-danger btn-sm">
+                            Sil
+                        </button>
+
+                    </form>
+
+                </td>
             </tr>
         }
 

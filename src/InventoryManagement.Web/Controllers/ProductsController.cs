@@ -78,4 +78,74 @@ public class ProductsController : Controller
 
         return RedirectToAction(nameof(Index));
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Edit(Guid id)
+    {
+        var product = await _productService.GetByIdAsync(id);
+
+        if (product == null)
+            return NotFound();
+
+        var model = new ProductUpdateViewModel
+        {
+            Id = product.Id,
+            Name = product.Name,
+            Barcode = product.Barcode,
+            Description = product.Description,
+            CategoryId = product.CategoryId,
+            BrandId = product.BrandId,
+            UnitId = product.UnitId
+        };
+
+        model.Categories = (await _categoryService.GetAllAsync())
+            .Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name
+            }).ToList();
+
+        model.Brands = (await _brandService.GetAllAsync())
+            .Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name
+            }).ToList();
+
+        model.Units = (await _unitService.GetAllAsync())
+            .Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name
+            }).ToList();
+
+        return View(model);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(ProductUpdateViewModel model)
+    {
+        var dto = new ProductUpdateDto
+        {
+            Id = model.Id,
+            Name = model.Name,
+            Barcode = model.Barcode,
+            Description = model.Description,
+            CategoryId = model.CategoryId,
+            BrandId = model.BrandId,
+            UnitId = model.UnitId
+        };
+
+        await _productService.UpdateAsync(dto);
+
+        return RedirectToAction(nameof(Index));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        await _productService.DeleteAsync(id);
+
+        return RedirectToAction(nameof(Index));
+    }
 }
