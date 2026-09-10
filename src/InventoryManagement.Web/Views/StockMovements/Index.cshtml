@@ -1,0 +1,37 @@
+﻿@model List<InventoryManagement.Application.DTOs.StockMovements.StockMovementListDto>
+
+<h2>Stok Hareketleri</h2>
+
+<a asp-action="Create"
+   class="btn btn-success mb-3">
+    Yeni Hareket
+</a>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Ürün</th>
+            <th>Depo</th>
+            <th>Tür</th>
+            <th>Miktar</th>
+            <th>Tarih</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.WarehouseName</td>
+                <td>@item.MovementType</td>
+                <td>@item.Quantity</td>
+                <td>@item.CreatedAt</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

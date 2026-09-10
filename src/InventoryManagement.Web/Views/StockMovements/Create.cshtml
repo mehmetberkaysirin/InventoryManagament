@@ -1,0 +1,53 @@
+﻿@model InventoryManagement.Web.ViewModels.StockMovements.StockMovementCreateViewModel
+
+<h2>Stok Hareketi Ekle</h2>
+
+<form asp-action="Create" method="post">
+
+    <div class="mb-3">
+        <label asp-for="StockId" class="form-label">Stok</label>
+        <select asp-for="StockId"
+                asp-items="Model.Stocks"
+                class="form-select">
+            <option value="">Stok Seçiniz</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MovementType" class="form-label">
+            Hareket Türü
+        </label>
+
+        <select asp-for="MovementType" class="form-select">
+            <option value="1">Giriş</option>
+            <option value="2">Çıkış</option>
+            <option value="3">Transfer Giriş</option>
+            <option value="4">Transfer Çıkış</option>
+            <option value="5">Sayım Düzeltme</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Quantity" class="form-label">
+            Miktar
+        </label>
+
+        <input asp-for="Quantity"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">
+            Açıklama
+        </label>
+
+        <textarea asp-for="Description"
+                  class="form-control"></textarea>
+    </div>
+
+    <button type="submit"
+            class="btn btn-primary">
+        Kaydet
+    </button>
+
+</form>

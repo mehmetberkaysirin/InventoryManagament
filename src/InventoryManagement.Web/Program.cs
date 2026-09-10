@@ -34,6 +34,15 @@ builder.Services.AddScoped<IWarehouseService, WarehouseService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
+builder.Services.AddScoped<IStockRepository, StockRepository>();
+
+builder.Services.AddScoped<IStockService, StockService>();
+
+builder.Services.AddScoped<IStockMovementRepository, StockMovementRepository>();
+
+
+
+
 builder.Services.AddAutoMapper(cfg =>
 {
     cfg.AddProfile<CategoryProfile>();
@@ -41,6 +50,8 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddProfile<UnitProfile>();
     cfg.AddProfile<WarehouseProfile>();
     cfg.AddProfile<ProductProfile>();
+    cfg.AddProfile<StockProfile>();
+    cfg.AddProfile<StockMovementProfile>();
 });
 
 var app = builder.Build();

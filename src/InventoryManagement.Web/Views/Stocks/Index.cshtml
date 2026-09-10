@@ -1,0 +1,32 @@
+﻿@model List<InventoryManagement.Application.DTOs.Stocks.StockListDto>
+
+<h2>Stoklar</h2>
+
+<a asp-action="Create" class="btn btn-success mb-3">
+    Yeni Stok
+</a>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Ürün</th>
+            <th>Depo</th>
+            <th>Miktar</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.WarehouseName</td>
+                <td>@item.Quantity</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
