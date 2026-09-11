@@ -1,61 +1,116 @@
 ﻿@model List<InventoryManagement.Application.DTOs.Products.ProductListDto>
 
-<h2>Ürünler</h2>
+@{
+    ViewData["Title"] = "Ürünler";
+}
 
-<a asp-action="Create" class="btn btn-success mb-3">
-    Yeni Ürün
-</a>
+<div class="row">
+    <div class="col-12">
+        <div class="card card-outline card-primary shadow-sm">
 
-<table class="table table-bordered">
+            <div class="card-header d-flex align-items-center justify-content-between py-3">
+                <h3 class="card-title fw-bold mb-0">
+                    <i class="fa-solid fa-boxes-stacked me-2"></i>Ürün Listesi
+                </h3>
+                <a asp-action="Create" class="btn btn-primary btn-sm px-3">
+                    <i class="fa-solid fa-plus me-1"></i> Yeni Ürün Ekle
+                </a>
+            </div>
 
-    <thead>
-        <tr>
-            <th>Ürün Adı</th>
-            <th>Barkod</th>
-            <th>Kategori</th>
-            <th>Marka</th>
-            <th>Birim</th>
-            <th>Aktif</th>
-            <th>İşlemler</th>
-        </tr>
-    </thead>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Ürün Adı</th>
+                                <th>Barkod</th>
+                                <th>Kategori</th>
+                                <th>Marka</th>
+                                <th>Birim</th>
+                                <th>Durum</th>
+                                <th class="text-end pe-4" style="width: 180px;">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="fw-semibold">@item.Name</td>
+                                        <td>
+                                            <span class="badge bg-light text-dark border">
+                                                <i class="fa-solid fa-barcode me-1"></i>@item.Barcode
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-info-subtle text-info border border-info-subtle">
+                                                <i class="fa-solid fa-layer-group me-1"></i>@item.CategoryName
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">
+                                                <i class="fa-solid fa-copyright me-1"></i>@item.BrandName
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-light text-dark border fw-bold">
+                                                @item.UnitName
+                                            </span>
+                                        </td>
+                                        <td>
+                                            @if (item.IsActive)
+                                            {
+                                                <span class="badge bg-success-subtle text-success border border-success-subtle">
+                                                    <i class="fa-solid fa-circle-check me-1"></i>Aktif
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-danger-subtle text-danger border border-danger-subtle">
+                                                    <i class="fa-solid fa-circle-xmark me-1"></i>Pasif
+                                                </span>
+                                            }
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <div class="btn-group" role="group">
+                                                <a asp-action="Edit"
+                                                   asp-route-id="@item.Id"
+                                                   class="btn btn-sm btn-outline-warning"
+                                                   title="Düzenle">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </a>
 
-    <tbody>
+                                                <form asp-action="Delete"
+                                                      asp-route-id="@item.Id"
+                                                      method="post"
+                                                      class="d-inline"
+                                                      onsubmit="return confirm('Bu ürünü silmek istediğinize emin misiniz?');">
+                                                    <button type="submit"
+                                                            class="btn btn-sm btn-outline-danger ms-1"
+                                                            title="Sil">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="7" class="text-center text-muted py-4">
+                                        <i class="fa-solid fa-inbox fs-3 d-block mb-2"></i>
+                                        Henüz kaydedilmiş bir ürün bulunamadı.
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Name</td>
-                <td>@item.Barcode</td>
-                <td>@item.CategoryName</td>
-                <td>@item.BrandName</td>
-                <td>@item.UnitName</td>
-                <td>@item.IsActive</td>
-                <td>
-
-                    <a asp-action="Edit"
-                       asp-route-id="@item.Id"
-                       class="btn btn-warning btn-sm">
-                        Düzenle
-                    </a>
-
-                    <form asp-action="Delete"
-                          asp-route-id="@item.Id"
-                          method="post"
-                          style="display:inline;"
-                          onsubmit="return confirm('Bu ürünü silmek istediğinize emin misiniz?');">
-
-                        <button type="submit"
-                                class="btn btn-danger btn-sm">
-                            Sil
-                        </button>
-
-                    </form>
-
-                </td>
-            </tr>
-        }
-
-    </tbody>
-
-</table>
+        </div>
+    </div>
+</div>

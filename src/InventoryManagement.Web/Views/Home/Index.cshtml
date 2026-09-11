@@ -1,8 +1,136 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Gösterge Paneli";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- HOŞ GELDİNİZ PANERİ -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card card-outline card-primary shadow-sm">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <h2 class="fw-bold text-primary mb-1">
+                            <i class="fa-solid fa-boxes-packing me-2"></i>Stok Yönetim Sistemine Hoş Geldiniz
+                        </h2>
+                        <p class="text-muted mb-0">
+                            Ürünlerinizi, stok hareketlerinizi ve depo durumlarınızı yan menüyü kullanarak kolayca yönetebilirsiniz.
+                        </p>
+                    </div>
+                    <div class="d-none d-md-block">
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle fs-6 px-3 py-2">
+                            <i class="fa-regular fa-calendar-check me-1"></i> @DateTime.Now.ToString("dd MMMM yyyy")
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ÖZET İSTATİSTİK KARTLARI (SMALL BOXES) -->
+<div class="row">
+    <!-- Ürünler -->
+    <div class="col-lg-3 col-6 mb-4">
+        <div class="small-box text-bg-primary shadow-sm rounded-3 p-3 position-relative overflow-hidden">
+            <div class="inner">
+                <h3>Ürünler</h3>
+                <p class="mb-0">Tüm Tanımlı Ürünler</p>
+            </div>
+            <div class="icon position-absolute end-0 top-0 p-3 opacity-25">
+                <i class="fa-solid fa-boxes-stacked fa-3x"></i>
+            </div>
+            <a asp-controller="Products" asp-action="Index" class="small-box-footer d-block text-white text-decoration-none mt-3 pt-2 border-top border-white-50 small">
+                Detayları Gör <i class="fa-solid fa-arrow-circle-right ms-1"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Stok Durumu -->
+    <div class="col-lg-3 col-6 mb-4">
+        <div class="small-box text-bg-success shadow-sm rounded-3 p-3 position-relative overflow-hidden">
+            <div class="inner">
+                <h3>Stoklar</h3>
+                <p class="mb-0">Mevcut Stok Miktarları</p>
+            </div>
+            <div class="icon position-absolute end-0 top-0 p-3 opacity-25">
+                <i class="fa-solid fa-cubes fa-3x"></i>
+            </div>
+            <a asp-controller="Stocks" asp-action="Index" class="small-box-footer d-block text-white text-decoration-none mt-3 pt-2 border-top border-white-50 small">
+                Detayları Gör <i class="fa-solid fa-arrow-circle-right ms-1"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Stok Hareketleri -->
+    <div class="col-lg-3 col-6 mb-4">
+        <div class="small-box text-bg-warning text-white shadow-sm rounded-3 p-3 position-relative overflow-hidden">
+            <div class="inner">
+                <h3>Hareketler</h3>
+                <p class="mb-0">Giriş ve Çıkış İşlemleri</p>
+            </div>
+            <div class="icon position-absolute end-0 top-0 p-3 opacity-25 text-white">
+                <i class="fa-solid fa-arrow-right-left fa-3x"></i>
+            </div>
+            <a asp-controller="StockMovements" asp-action="Index" class="small-box-footer d-block text-white text-decoration-none mt-3 pt-2 border-top border-white-50 small">
+                Detayları Gör <i class="fa-solid fa-arrow-circle-right ms-1"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Depolar -->
+    <div class="col-lg-3 col-6 mb-4">
+        <div class="small-box text-bg-info text-white shadow-sm rounded-3 p-3 position-relative overflow-hidden">
+            <div class="inner">
+                <h3>Depolar</h3>
+                <p class="mb-0">Kayıtlı Depo Alanları</p>
+            </div>
+            <div class="icon position-absolute end-0 top-0 p-3 opacity-25 text-white">
+                <i class="fa-solid fa-warehouse fa-3x"></i>
+            </div>
+            <a asp-controller="Warehouses" asp-action="Index" class="small-box-footer d-block text-white text-decoration-none mt-3 pt-2 border-top border-white-50 small">
+                Detayları Gör <i class="fa-solid fa-arrow-circle-right ms-1"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- HIZLI ERİŞİM KARTLARI -->
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header bg-light">
+                <h3 class="card-title fw-bold mb-0">
+                    <i class="fa-solid fa-bolt text-warning me-2"></i>Hızlı İşlemler
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <a asp-controller="Products" asp-action="Create" class="btn btn-outline-primary w-100 py-3 text-start">
+                            <i class="fa-solid fa-plus-circle fs-4 d-block mb-1"></i>
+                            <span class="fw-bold">Yeni Ürün Tanımla</span>
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a asp-controller="StockMovements" asp-action="Create" class="btn btn-outline-success w-100 py-3 text-start">
+                            <i class="fa-solid fa-arrow-right-left fs-4 d-block mb-1"></i>
+                            <span class="fw-bold">Stok Hareketi Ekle</span>
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a asp-controller="Stocks" asp-action="Create" class="btn btn-outline-info w-100 py-3 text-start">
+                            <i class="fa-solid fa-cubes fs-4 d-block mb-1"></i>
+                            <span class="fw-bold">Yeni Stok Gir</span>
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a asp-controller="Warehouses" asp-action="Create" class="btn btn-outline-secondary w-100 py-3 text-start">
+                            <i class="fa-solid fa-warehouse fs-4 d-block mb-1"></i>
+                            <span class="fw-bold">Yeni Depo Ekle</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

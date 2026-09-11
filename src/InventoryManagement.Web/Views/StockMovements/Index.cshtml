@@ -1,37 +1,89 @@
 ﻿@model List<InventoryManagement.Application.DTOs.StockMovements.StockMovementListDto>
 
-<h2>Stok Hareketleri</h2>
+@{
+    ViewData["Title"] = "Stok Hareketleri";
+}
 
-<a asp-action="Create"
-   class="btn btn-success mb-3">
-    Yeni Hareket
-</a>
+<div class="row">
+    <div class="col-12">
+        <div class="card card-outline card-primary shadow-sm">
 
-<table class="table table-bordered">
+            <div class="card-header d-flex align-items-center justify-content-between py-3">
+                <h3 class="card-title fw-bold mb-0">
+                    <i class="fa-solid fa-arrow-right-left me-2"></i>Stok Hareket Geçmişi
+                </h3>
+                <a asp-action="Create" class="btn btn-primary btn-sm px-3">
+                    <i class="fa-solid fa-plus me-1"></i> Yeni Hareket Ekle
+                </a>
+            </div>
 
-    <thead>
-        <tr>
-            <th>Ürün</th>
-            <th>Depo</th>
-            <th>Tür</th>
-            <th>Miktar</th>
-            <th>Tarih</th>
-        </tr>
-    </thead>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Ürün Adı</th>
+                                <th>Depo</th>
+                                <th>Hareket Türü</th>
+                                <th class="text-end pe-4">Miktar</th>
+                                <th class="text-center">İşlem Tarihi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    // String türünü Türkçe karakter duyarsız kontrol ediyoruz:
+                                    var typeStr = item.MovementType?.ToString().ToLower(new System.Globalization.CultureInfo("tr-TR")) ?? "";
+                                    bool isStockIn = typeStr.Contains("giriş") || typeStr.Contains("giris") || typeStr.Contains("1") || typeStr.Contains("in");
 
-    <tbody>
+                                    <tr>
+                                        <td class="fw-semibold">@item.ProductName</td>
+                                        <td>
+                                            <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">
+                                                <i class="fa-solid fa-warehouse me-1"></i>@item.WarehouseName
+                                            </span>
+                                        </td>
+                                        <td>
+                                            @if (isStockIn)
+                                            {
+                                                <span class="badge bg-success-subtle text-success border border-success-subtle">
+                                                    <i class="fa-solid fa-arrow-down-left me-1"></i>Stok Girişi
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-danger-subtle text-danger border border-danger-subtle">
+                                                    <i class="fa-solid fa-arrow-up-right me-1"></i>Stok Çıkışı
+                                                </span>
+                                            }
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            <span class="fw-bold fs-6 @(isStockIn ? "text-success" : "text-danger")">
+                                                @(isStockIn ? "+" : "-")@item.Quantity
+                                            </span>
+                                        </td>
+                                        <td class="text-center text-muted small">
+                                            <i class="fa-regular fa-clock me-1"></i>@item.CreatedAt.ToString("dd.MM.yyyy HH:mm")
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted py-4">
+                                        <i class="fa-solid fa-inbox fs-3 d-block mb-2"></i>
+                                        Henüz kaydedilmiş bir stok hareketi bulunamadı.
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.ProductName</td>
-                <td>@item.WarehouseName</td>
-                <td>@item.MovementType</td>
-                <td>@item.Quantity</td>
-                <td>@item.CreatedAt</td>
-            </tr>
-        }
-
-    </tbody>
-
-</table>
+        </div>
+    </div>
+</div>

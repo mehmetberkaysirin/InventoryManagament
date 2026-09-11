@@ -1,53 +1,95 @@
 ﻿@model InventoryManagement.Web.ViewModels.Products.ProductCreateViewModel
 
-<h2>Ürün Ekle</h2>
+@{
+    ViewData["Title"] = "Ürün Ekle";
+}
 
-<form asp-action="Create" method="post">
+<div class="row">
+    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <div class="card card-primary card-outline shadow-sm">
 
-    <div class="mb-3">
-        <label asp-for="Name" class="form-label">Ürün Adı</label>
-        <input asp-for="Name" class="form-control" />
+            <div class="card-header">
+                <h3 class="card-title fw-bold">
+                    <i class="fa-solid fa-boxes-stacked me-2"></i>Yeni Ürün Tanımı
+                </h3>
+            </div>
+
+            <form asp-action="Create" method="post">
+                <div class="card-body">
+
+                    <div class="row">
+                        <!-- Ürün Adı -->
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Name" class="form-label fw-semibold">Ürün Adı</label>
+                            <input asp-for="Name" class="form-control" placeholder="Ürün adını giriniz..." />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <!-- Barkod -->
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Barcode" class="form-label fw-semibold">Barkod</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-barcode"></i></span>
+                                <input asp-for="Barcode" class="form-control" placeholder="Örn: 8690000000000" />
+                            </div>
+                            <span asp-validation-for="Barcode" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Kategori -->
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="CategoryId" class="form-label fw-semibold">Kategori</label>
+                            <select asp-for="CategoryId"
+                                    asp-items="Model.Categories"
+                                    class="form-select">
+                                <option value="">-- Kategori Seçiniz --</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+
+                        <!-- Marka -->
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="BrandId" class="form-label fw-semibold">Marka</label>
+                            <select asp-for="BrandId"
+                                    asp-items="Model.Brands"
+                                    class="form-select">
+                                <option value="">-- Marka Seçiniz --</option>
+                            </select>
+                            <span asp-validation-for="BrandId" class="text-danger"></span>
+                        </div>
+
+                        <!-- Birim -->
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="UnitId" class="form-label fw-semibold">Birim</label>
+                            <select asp-for="UnitId"
+                                    asp-items="Model.Units"
+                                    class="form-select">
+                                <option value="">-- Birim Seçiniz --</option>
+                            </select>
+                            <span asp-validation-for="UnitId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Açıklama -->
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label fw-semibold">Açıklama</label>
+                        <textarea asp-for="Description" class="form-control" rows="3" placeholder="Ürün detaylarını giriniz..."></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="card-footer d-flex justify-content-between align-items-center bg-light">
+                    <a asp-action="Index" class="btn btn-outline-secondary">
+                        <i class="fa-solid fa-arrow-left me-1"></i> İptal
+                    </a>
+                    <button type="submit" class="btn btn-primary px-4">
+                        <i class="fa-solid fa-check me-1"></i> Kaydet
+                    </button>
+                </div>
+            </form>
+
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label asp-for="Barcode" class="form-label">Barkod</label>
-        <input asp-for="Barcode" class="form-control" />
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Description" class="form-label">Açıklama</label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="CategoryId" class="form-label">Kategori</label>
-        <select asp-for="CategoryId"
-                asp-items="Model.Categories"
-                class="form-select">
-            <option value="">Kategori Seçiniz</option>
-        </select>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="BrandId" class="form-label">Marka</label>
-        <select asp-for="BrandId"
-                asp-items="Model.Brands"
-                class="form-select">
-            <option value="">Marka Seçiniz</option>
-        </select>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="UnitId" class="form-label">Birim</label>
-        <select asp-for="UnitId"
-                asp-items="Model.Units"
-                class="form-select">
-            <option value="">Birim Seçiniz</option>
-        </select>
-    </div>
-
-    <button type="submit" class="btn btn-primary">
-        Kaydet
-    </button>
-
-</form>
+</div>

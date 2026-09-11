@@ -1,31 +1,61 @@
 ﻿@model InventoryManagement.Application.DTOs.Warehouses.WarehouseCreateDto
 
-<h2>Depo Ekle</h2>
+@{
+    ViewData["Title"] = "Depo Ekle";
+}
 
-<form asp-action="Create" method="post">
+<div class="row">
+    <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+        <div class="card card-primary card-outline shadow-sm">
 
-    <div class="mb-3">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
+            <div class="card-header">
+                <h3 class="card-title fw-bold">
+                    <i class="fa-solid fa-warehouse me-2"></i>Yeni Depo Tanımı
+                </h3>
+            </div>
+
+            <form asp-action="Create" method="post">
+                <div class="card-body">
+
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label fw-semibold">Depo Adı</label>
+                        <input asp-for="Name" class="form-control" placeholder="Depo adını giriniz..." />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Code" class="form-label fw-semibold">Depo Kodu</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-barcode"></i></span>
+                            <input asp-for="Code" class="form-control" placeholder="Örn: WH-001" />
+                        </div>
+                        <span asp-validation-for="Code" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label fw-semibold">Açıklama</label>
+                        <textarea asp-for="Description" class="form-control" rows="2" placeholder="Depo hakkında kısa açıklama..."></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Address" class="form-label fw-semibold">Adres</label>
+                        <textarea asp-for="Address" class="form-control" rows="3" placeholder="Açık adres giriniz..."></textarea>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="card-footer d-flex justify-content-between align-items-center bg-light">
+                    <a asp-action="Index" class="btn btn-outline-secondary">
+                        <i class="fa-solid fa-arrow-left me-1"></i> İptal
+                    </a>
+                    <button type="submit" class="btn btn-primary px-4">
+                        <i class="fa-solid fa-check me-1"></i> Kaydet
+                    </button>
+                </div>
+            </form>
+
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label asp-for="Code"></label>
-        <input asp-for="Code" class="form-control" />
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Address"></label>
-        <textarea asp-for="Address" class="form-control"></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary">
-        Kaydet
-    </button>
-
-</form>
+</div>

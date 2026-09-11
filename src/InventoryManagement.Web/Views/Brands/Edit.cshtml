@@ -1,23 +1,53 @@
 ﻿@model InventoryManagement.Application.DTOs.Brands.BrandUpdateDto
 
-<h2>Marka Düzenle</h2>
+@{
+    ViewData["Title"] = "Marka Düzenle";
+}
 
-<form asp-action="Edit" method="post">
+<div class="row">
+    <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+        <div class="card card-warning card-outline shadow-sm">
 
-    <input asp-for="Id" type="hidden" />
+            <div class="card-header">
+                <h3 class="card-title fw-bold">
+                    <i class="fa-solid fa-pen-to-square me-2"></i>Marka Bilgilerini Güncelle
+                </h3>
+            </div>
 
-    <div class="mb-3">
-        <label asp-for="Name" class="form-label"></label>
-        <input asp-for="Name" class="form-control" />
+            <form asp-action="Edit" method="post">
+                <input asp-for="Id" type="hidden" />
+
+                <div class="card-body">
+
+                    <!-- Marka Adı -->
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label fw-semibold">Marka Adı</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-copyright"></i></span>
+                            <input asp-for="Name" class="form-control" placeholder="Marka adını giriniz..." />
+                        </div>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <!-- Açıklama -->
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label fw-semibold">Açıklama</label>
+                        <textarea asp-for="Description" class="form-control" rows="4" placeholder="Marka ile ilgili detaylı açıklama giriniz..."></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="card-footer d-flex justify-content-between align-items-center bg-light">
+                    <a asp-action="Index" class="btn btn-outline-secondary">
+                        <i class="fa-solid fa-arrow-left me-1"></i> İptal
+                    </a>
+                    <button type="submit" class="btn btn-warning px-4">
+                        <i class="fa-solid fa-rotate me-1"></i> Güncelle
+                    </button>
+                </div>
+            </form>
+
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label asp-for="Description" class="form-label"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary">
-        Güncelle
-    </button>
-
-</form>
+</div>

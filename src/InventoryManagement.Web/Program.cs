@@ -39,7 +39,7 @@ builder.Services.AddScoped<IStockRepository, StockRepository>();
 builder.Services.AddScoped<IStockService, StockService>();
 
 builder.Services.AddScoped<IStockMovementRepository, StockMovementRepository>();
-
+builder.Services.AddScoped<IStockMovementService, StockMovementService>();
 
 
 

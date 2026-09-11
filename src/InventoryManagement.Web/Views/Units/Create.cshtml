@@ -1,21 +1,49 @@
 ﻿@model InventoryManagement.Application.DTOs.Units.UnitCreateDto
 
-<h2>Birim Ekle</h2>
+@{
+    ViewData["Title"] = "Birim Ekle";
+}
 
-<form asp-action="Create" method="post">
+<div class="row">
+    <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+        <div class="card card-primary card-outline shadow-sm">
 
-    <div class="mb-3">
-        <label asp-for="Name" class="form-label"></label>
-        <input asp-for="Name" class="form-control" />
+            <div class="card-header">
+                <h3 class="card-title fw-bold">
+                    <i class="fa-solid fa-ruler me-2"></i>Yeni Birim Tanımı
+                </h3>
+            </div>
+
+            <form asp-action="Create" method="post">
+                <div class="card-body">
+
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label fw-semibold">Birim Adı</label>
+                        <input asp-for="Name" class="form-control" placeholder="Örn: Kilogram, Litre, Adet" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ShortName" class="form-label fw-semibold">Kısa Ad (Sembol)</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-ruler"></i></span>
+                            <input asp-for="ShortName" class="form-control" placeholder="Örn: KG, LT, Ad" />
+                        </div>
+                        <span asp-validation-for="ShortName" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="card-footer d-flex justify-content-between align-items-center bg-light">
+                    <a asp-action="Index" class="btn btn-outline-secondary">
+                        <i class="fa-solid fa-arrow-left me-1"></i> İptal
+                    </a>
+                    <button type="submit" class="btn btn-primary px-4">
+                        <i class="fa-solid fa-check me-1"></i> Kaydet
+                    </button>
+                </div>
+            </form>
+
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label asp-for="ShortName" class="form-label"></label>
-        <input asp-for="ShortName" class="form-control" />
-    </div>
-
-    <button type="submit" class="btn btn-primary">
-        Kaydet
-    </button>
-
-</form>
+</div>
