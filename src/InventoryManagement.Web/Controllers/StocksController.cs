@@ -1,11 +1,13 @@
 ﻿using InventoryManagement.Application.DTOs.Stocks;
 using InventoryManagement.Application.Interfaces.Services;
 using InventoryManagement.Web.ViewModels.Stocks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace InventoryManagement.Web.Controllers;
 
+[Authorize]
 public class StocksController : Controller
 {
     private readonly IStockService _stockService;

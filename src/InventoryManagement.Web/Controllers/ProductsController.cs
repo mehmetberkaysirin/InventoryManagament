@@ -1,11 +1,13 @@
 ﻿using InventoryManagement.Application.DTOs.Products;
 using InventoryManagement.Application.Interfaces.Services;
 using InventoryManagement.Web.ViewModels.Products;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace InventoryManagement.Web.Controllers;
 
+[Authorize(Roles = "Admin, WarehouseManager, Depo Görevlisi,User")]
 public class ProductsController : Controller
 {
     private readonly IProductService _productService;

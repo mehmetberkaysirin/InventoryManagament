@@ -1,12 +1,13 @@
 ﻿using InventoryManagement.Application.DTOs.StockMovements;
 using InventoryManagement.Application.Interfaces.Services;
-using InventoryManagement.Domain.Enums;
 using InventoryManagement.Web.ViewModels.StockMovements;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace InventoryManagement.Web.Controllers;
 
+[Authorize]
 public class StockMovementsController : Controller
 {
     private readonly IStockMovementService _stockMovementService;
@@ -23,7 +24,6 @@ public class StockMovementsController : Controller
     public async Task<IActionResult> Index()
     {
         var movements = await _stockMovementService.GetAllAsync();
-
         return View(movements);
     }
 
@@ -46,6 +46,19 @@ public class StockMovementsController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(StockMovementCreateViewModel model)
     {
+        if (!ModelState.IsValid)
+        {
+            model.Stocks = (await _stockService.GetAllAsync())
+                .Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = $"{x.ProductName} - {x.WarehouseName}"
+                })
+                .ToList();
+
+            return View(model);
+        }
+
         var dto = new StockMovementCreateDto
         {
             StockId = model.StockId,

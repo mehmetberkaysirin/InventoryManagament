@@ -1,9 +1,11 @@
 ﻿using InventoryManagement.Application.DTOs.Units;
 using InventoryManagement.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryManagement.Web.Controllers;
 
+[Authorize]
 public class UnitsController : Controller
 {
     private readonly IUnitService _unitService;

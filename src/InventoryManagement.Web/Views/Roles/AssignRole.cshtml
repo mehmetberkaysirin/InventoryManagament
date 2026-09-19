@@ -1,0 +1,44 @@
+﻿@model InventoryManagement.Web.Models.Account.AssignRoleViewModel
+@{
+    ViewData["Title"] = "Rol Ata";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card card-outline card-primary shadow-sm">
+            <div class="card-header">
+                <h3 class="card-title fw-bold">
+                    <i class="fa-solid fa-user-tag me-2"></i>@Model.UserFullName için Rol Seçimi
+                </h3>
+            </div>
+            <form asp-action="AssignRole" method="post">
+                <input type="hidden" asp-for="UserId" />
+                <input type="hidden" asp-for="UserFullName" />
+
+                <div class="card-body">
+                    <p class="text-muted small">Kullanıcıya tanımlamak istediğiniz rolleri işaretleyiniz:</p>
+
+                    @for(int i = 0; i < Model.Roles.Count; i++)
+                    {
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" asp-for="@Model.Roles[i].IsExist" role="switch" id="role_@i">
+                            <label class="form-check-label fw-bold" for="role_@i">
+                                @Model.Roles[i].RoleName
+                            </label>
+                            <input type="hidden" asp-for="@Model.Roles[i].RoleId" />
+                            <input type="hidden" asp-for="@Model.Roles[i].RoleName" />
+                        </div>
+                    }
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a asp-controller="Users" asp-action="Index" class="btn btn-secondary">
+                        <i class="fa-solid fa-arrow-left me-1"></i> Kullanıcı Listesine Dön
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-save me-1"></i> Rolleri Güncelle
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

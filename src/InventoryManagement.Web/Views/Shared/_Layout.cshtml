@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using InventoryManagement.Infrastructure.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="utf-8" />
@@ -40,10 +45,55 @@
                             <i class="fa-solid fa-expand"></i>
                         </a>
                     </li>
+
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        var currentUser = await UserManager.GetUserAsync(User);
+                        var displayName = currentUser != null ? $"{currentUser.FirstName} {currentUser.LastName}".Trim() : User.Identity?.Name;
+                        if (string.IsNullOrWhiteSpace(displayName))
+                        {
+                            displayName = User.Identity?.Name;
+                        }
+
+                        <!-- Kullanıcı Profil Menüsü -->
+                        <li class="nav-item dropdown user-menu">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                <i class="fa-solid fa-circle-user fa-lg me-1"></i>
+                                <span class="d-none d-md-inline fw-bold">@displayName</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+                                <!-- User Header -->
+                                <li class="user-header bg-primary text-white text-center p-3">
+                                    <i class="fa-solid fa-circle-user fa-4x mb-2"></i>
+                                    <p class="mb-0 fw-bold">@displayName</p>
+                                    <small>@currentUser?.Email</small>
+                                </li>
+                                <!-- Menu Footer -->
+                                <li class="user-footer p-2 bg-light d-flex justify-content-between align-items-center">
+                                    <a asp-controller="Account" asp-action="Profile" class="btn btn-default btn-flat btn-sm border">Profilim</a>
+                                    <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-danger btn-flat btn-sm">
+                                            <i class="fa-solid fa-right-from-bracket me-1"></i> Çıkış Yap
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="btn btn-outline-primary btn-sm my-1" asp-controller="Account" asp-action="Login">
+                                <i class="fa-solid fa-right-to-bracket me-1"></i> Giriş Yap
+                            </a>
+                        </li>
+                    }
                 </ul>
             </div>
         </nav>
         <!-- NAVBAR END -->
+
         <!-- SIDEBAR START -->
         <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
             <div class="sidebar-brand">
@@ -56,71 +106,108 @@
                 <nav class="mt-2">
                     <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
 
-                        <li class="nav-item">
-                            <a asp-controller="Home" asp-action="Index" class="nav-link">
-                                <i class="nav-icon fa-solid fa-gauge-high"></i>
-                                <p>Gösterge Paneli</p>
-                            </a>
-                        </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <!-- Gösterge Paneli -->
+                            <li class="nav-item">
+                                <a asp-controller="Home" asp-action="Index" class="nav-link">
+                                    <i class="nav-icon fa-solid fa-gauge-high"></i>
+                                    <p>Gösterge Paneli</p>
+                                </a>
+                            </li>
 
-                        <li class="nav-header">TANIMLAMALAR</li>
+                            @* 1. Sadece Admin Rolü Görebilir *@
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-header">SİSTEM</li>
 
-                        <li class="nav-item">
-                            <a asp-controller="Categories" asp-action="Index" class="nav-link">
-                                <i class="nav-icon fa-solid fa-layer-group"></i>
-                                <p>Kategoriler</p>
-                            </a>
-                        </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Users" asp-action="Index" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-users-gear"></i>
+                                        <p>Kullanıcılar</p>
+                                    </a>
+                                </li>
 
-                        <li class="nav-item">
-                            <a asp-controller="Brands" asp-action="Index" class="nav-link">
-                                <i class="nav-icon fa-solid fa-copyright"></i>
-                                <p>Markalar</p>
-                            </a>
-                        </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Roles" asp-action="Index" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-shield-halved"></i>
+                                        <p>Rol Yönetimi</p>
+                                    </a>
+                                </li>
+                            }
 
-                        <li class="nav-item">
-                            <a asp-controller="Units" asp-action="Index" class="nav-link">
-                                <i class="nav-icon fa-solid fa-ruler"></i>
-                                <p>Birimler</p>
-                            </a>
-                        </li>
+                            @* 2. Tanımlamalar - Admin ve Depo Yetkilileri Görebilir *@
+                            @if (User.IsInRole("Admin") || User.IsInRole("WarehouseManager") || User.IsInRole("Depo Görevlisi"))
+                            {
+                                <li class="nav-header">TANIMLAMALAR</li>
 
-                        <li class="nav-item">
-                            <a asp-controller="Warehouses" asp-action="Index" class="nav-link">
-                                <i class="nav-icon fa-solid fa-warehouse"></i>
-                                <p>Depolar</p>
-                            </a>
-                        </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Categories" asp-action="Index" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-layer-group"></i>
+                                        <p>Kategoriler</p>
+                                    </a>
+                                </li>
 
-                        <li class="nav-header">STOK İŞLEMLERİ</li>
+                                <li class="nav-item">
+                                    <a asp-controller="Brands" asp-action="Index" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-copyright"></i>
+                                        <p>Markalar</p>
+                                    </a>
+                                </li>
 
-                        <li class="nav-item">
-                            <a asp-controller="Products" asp-action="Index" class="nav-link">
-                                <i class="nav-icon fa-solid fa-boxes-stacked"></i>
-                                <p>Ürünler</p>
-                            </a>
-                        </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Units" asp-action="Index" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-ruler"></i>
+                                        <p>Birimler</p>
+                                    </a>
+                                </li>
 
-                        <li class="nav-item">
-                            <a asp-controller="Stocks" asp-action="Index" class="nav-link">
-                                <i class="nav-icon fa-solid fa-cubes"></i>
-                                <p>Stok Durumu</p>
-                            </a>
-                        </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Warehouses" asp-action="Index" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-warehouse"></i>
+                                        <p>Depolar</p>
+                                    </a>
+                                </li>
+                            }
 
-                        <li class="nav-item">
-                            <a asp-controller="StockMovements" asp-action="Index" class="nav-link">
-                                <i class="nav-icon fa-solid fa-arrow-right-left"></i>
-                                <p>Stok Hareketleri</p>
-                            </a>
-                        </li>
+                            @* 3. Stok İşlemleri - Ürünler (User dahil herkes görebilir) *@
+                            @if (User.IsInRole("Admin") || User.IsInRole("WarehouseManager") || User.IsInRole("Depo Görevlisi") || User.IsInRole("User"))
+                            {
+                                <li class="nav-header">STOK İŞLEMLERİ</li>
+
+                                <li class="nav-item">
+                                    <a asp-controller="Products" asp-action="Index" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-boxes-stacked"></i>
+                                        <p>Ürünler</p>
+                                    </a>
+                                </li>
+                            }
+
+                            @* 4. Stok Durumu ve Hareketleri - Sadece Yetkililer Görebilir *@
+                            @if (User.IsInRole("Admin") || User.IsInRole("WarehouseManager") || User.IsInRole("Depo Görevlisi"))
+                            {
+                                <li class="nav-item">
+                                    <a asp-controller="Stocks" asp-action="Index" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-cubes"></i>
+                                        <p>Stok Durumu</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a asp-controller="StockMovements" asp-action="Index" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-arrow-right-left"></i>
+                                        <p>Stok Hareketleri</p>
+                                    </a>
+                                </li>
+                            }
+                        }
 
                     </ul>
                 </nav>
             </div>
         </aside>
         <!-- SIDEBAR END -->
+
         <!-- MAIN CONTENT START -->
         <main class="app-main">
             <div class="app-content-header">
@@ -145,6 +232,7 @@
             </div>
         </main>
         <!-- MAIN CONTENT END -->
+
         <!-- FOOTER START -->
         <footer class="app-footer">
             <div class="float-end d-none d-sm-inline">

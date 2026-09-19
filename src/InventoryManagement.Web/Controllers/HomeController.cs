@@ -1,21 +1,27 @@
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+using InventoryManagement.Application.Interfaces.Services;
 using InventoryManagement.Web.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace InventoryManagement.Web.Controllers;
 
+[Authorize]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly IDashboardService _dashboardService;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, IDashboardService dashboardService)
     {
         _logger = logger;
+        _dashboardService = dashboardService;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var summary = await _dashboardService.GetDashboardSummaryAsync();
+        return View(summary);
     }
 
     public IActionResult Privacy()

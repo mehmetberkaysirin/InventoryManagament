@@ -1,9 +1,11 @@
 ﻿using InventoryManagement.Application.DTOs.Brands;
 using InventoryManagement.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryManagement.Web.Controllers;
 
+[Authorize]
 public class BrandsController : Controller
 {
     private readonly IBrandService _brandService;

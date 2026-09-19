@@ -1,9 +1,11 @@
 ﻿using InventoryManagement.Application.DTOs.Warehouses;
 using InventoryManagement.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryManagement.Web.Controllers;
 
+[Authorize]
 public class WarehousesController : Controller
 {
     private readonly IWarehouseService _warehouseService;
