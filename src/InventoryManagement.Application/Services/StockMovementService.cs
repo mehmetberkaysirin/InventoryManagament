@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using AutoMapper;
 using InventoryManagement.Application.DTOs.StockMovements;
 using InventoryManagement.Application.Interfaces.Repositories;
@@ -17,15 +16,18 @@ public class StockMovementService : IStockMovementService
 {
     private readonly IStockMovementRepository _stockMovementRepository;
     private readonly IStockRepository _stockRepository;
+    private readonly IStockNotifier _stockNotifier;
     private readonly IMapper _mapper;
 
     public StockMovementService(
         IStockMovementRepository stockMovementRepository,
         IStockRepository stockRepository,
+        IStockNotifier stockNotifier,
         IMapper mapper)
     {
         _stockMovementRepository = stockMovementRepository;
         _stockRepository = stockRepository;
+        _stockNotifier = stockNotifier;
         _mapper = mapper;
     }
 
@@ -89,5 +91,8 @@ public class StockMovementService : IStockMovementService
 
         await _stockRepository.SaveChangesAsync();
         await _stockMovementRepository.SaveChangesAsync();
+
+        // Stok hareketi başarıyla veritabanına işlendikten sonra SignalR ile tetikleme yapılıyor
+        await _stockNotifier.NotifyStockUpdatedAsync();
     }
 }

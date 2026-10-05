@@ -1,13 +1,15 @@
-using InventoryManagement.Infrastructure.Data;
-using InventoryManagement.Infrastructure.Identity;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using AutoMapper;
-using InventoryManagement.Application.Mapping;
 using InventoryManagement.Application.Interfaces.Repositories;
 using InventoryManagement.Application.Interfaces.Services;
+using InventoryManagement.Application.Mapping;
 using InventoryManagement.Application.Services;
+using InventoryManagement.Infrastructure.Data;
+using InventoryManagement.Infrastructure.Identity;
 using InventoryManagement.Infrastructure.Repositories;
+using InventoryManagement.Web.Hubs;
+using InventoryManagement.Web.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,6 +58,7 @@ builder.Services.AddScoped<IStockService, StockService>();
 builder.Services.AddScoped<IStockMovementRepository, StockMovementRepository>();
 builder.Services.AddScoped<IStockMovementService, StockMovementService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
+builder.Services.AddScoped<IStockNotifier, StockNotifier>();
 
 builder.Services.AddAutoMapper(cfg =>
 {
@@ -67,7 +70,7 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddProfile<StockProfile>();
     cfg.AddProfile<StockMovementProfile>();
 });
-
+builder.Services.AddSignalR();
 var app = builder.Build();
 
 // 1. SEED DATA TETİKLEME (Uygulama ayağa kalkarken verileri basar)
@@ -107,6 +110,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapHub<InventoryHub>("/inventoryHub");
 
 // Tek ve doğru app.Run() en sonda!
 app.Run();
