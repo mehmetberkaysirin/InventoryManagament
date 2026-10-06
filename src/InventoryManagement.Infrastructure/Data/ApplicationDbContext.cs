@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
-
 using InventoryManagement.Domain.Entities;
 using InventoryManagement.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -40,5 +40,15 @@ public class ApplicationDbContext
 
         builder.ApplyConfigurationsFromAssembly(
             typeof(ApplicationDbContext).Assembly);
+    }
+
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        foreach (var entry in ChangeTracker.Entries())
+        {
+            Console.WriteLine(
+                $"{entry.Entity.GetType().Name} - {entry.State}");
+        }
+        return await base.SaveChangesAsync(cancellationToken);
     }
 }

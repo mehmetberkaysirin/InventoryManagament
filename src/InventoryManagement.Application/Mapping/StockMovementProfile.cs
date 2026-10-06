@@ -14,7 +14,8 @@ public class StockMovementProfile : Profile
 {
     public StockMovementProfile()
     {
-        CreateMap<StockMovementCreateDto, StockMovement>();
+        CreateMap<StockMovementCreateDto, StockMovement>()
+            .ForMember(dest => dest.Stock, opt => opt.Ignore()); // <-- İŞTE BURASI! AutoMapper'ın Stock nesnesine dokunmasını kesin olarak yasaklıyoruz.
 
         CreateMap<StockMovement, StockMovementListDto>()
             .ForMember(dest => dest.ProductName,

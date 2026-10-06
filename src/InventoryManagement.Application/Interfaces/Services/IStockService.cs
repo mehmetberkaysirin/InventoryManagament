@@ -1,10 +1,10 @@
-﻿using System;
+﻿using InventoryManagement.Application.DTOs.Stocks;
+using InventoryManagement.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using InventoryManagement.Application.DTOs.Stocks;
 
 namespace InventoryManagement.Application.Interfaces.Services;
 
@@ -19,4 +19,5 @@ public interface IStockService
     Task UpdateAsync(StockUpdateDto dto);
 
     Task DeleteAsync(Guid id);
+    Task<Stock?> GetByProductAndWarehouseAsync(Guid productId, Guid warehouseId);
 }

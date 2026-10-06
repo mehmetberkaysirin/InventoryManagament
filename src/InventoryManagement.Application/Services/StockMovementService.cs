@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
 using AutoMapper;
 using InventoryManagement.Application.DTOs.StockMovements;
 using InventoryManagement.Application.Interfaces.Repositories;
@@ -32,52 +29,43 @@ public class StockMovementService : IStockMovementService
     public async Task<List<StockMovementListDto>> GetAllAsync()
     {
         var movements = await _stockMovementRepository.GetAllAsync();
-
         return _mapper.Map<List<StockMovementListDto>>(movements);
     }
 
     public async Task CreateAsync(StockMovementCreateDto dto)
     {
+        // 1. Stoğu bul ve miktarını güncelle
         var stock = await _stockRepository.GetByIdAsync(dto.StockId);
-
         if (stock == null)
-            throw new Exception("Stok kaydı bulunamadı.");
+            throw new Exception($"ID'si {dto.StockId} olan stok veritabanında bulunamadı!");
 
+        decimal newQuantity = stock.Quantity;
         switch (dto.MovementType)
         {
             case StockMovementType.Entry:
-                stock.Quantity += dto.Quantity;
-                break;
-
             case StockMovementType.TransferIn:
-                stock.Quantity += dto.Quantity;
+                newQuantity += dto.Quantity;
                 break;
-
             case StockMovementType.Exit:
-
-                if (stock.Quantity < dto.Quantity)
-                    throw new Exception("Yetersiz stok.");
-
-                stock.Quantity -= dto.Quantity;
-                break;
-
             case StockMovementType.TransferOut:
-
                 if (stock.Quantity < dto.Quantity)
                     throw new Exception("Yetersiz stok.");
-
-                stock.Quantity -= dto.Quantity;
+                newQuantity -= dto.Quantity;
                 break;
-
             case StockMovementType.CountAdjustment:
-                stock.Quantity = dto.Quantity;
+                newQuantity = dto.Quantity;
                 break;
         }
 
-        _stockRepository.Update(stock);
+        // --- EN KRİTİK NOKTA BURASI ---
+        // Doğrudan SQL ile güncelleyerek EF Core ChangeTracker'ın hafızasını ve 
+        // stock nesnesini kirletmesini yüzde yüz engelliyoruz.
+        await _stockRepository.UpdateQuantityAsync(dto.StockId, newQuantity);
 
+        // 2. Şimdi stok hareketini tertemiz ve bağımsız bir şekilde ekliyoruz.
         var movement = new StockMovement
         {
+            Id = Guid.NewGuid(),
             StockId = dto.StockId,
             Quantity = dto.Quantity,
             MovementType = dto.MovementType,
@@ -86,8 +74,6 @@ public class StockMovementService : IStockMovementService
         };
 
         await _stockMovementRepository.AddAsync(movement);
-
-        await _stockRepository.SaveChangesAsync();
         await _stockMovementRepository.SaveChangesAsync();
     }
 }

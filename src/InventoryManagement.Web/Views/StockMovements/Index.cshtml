@@ -85,3 +85,21 @@
         </table>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Bu sayfaya özel bağımsız ve sağlam bir SignalR bağlantısı kuruyoruz
+        const movementConnection = new signalR.HubConnectionBuilder()
+            .withUrl("/stockHub")
+            .build();
+
+        movementConnection.on("ReceiveStockMovementUpdate", function () {
+            console.log("Stok hareketi sinyali alındı, sayfa yenileniyor...");
+            location.reload();
+        });
+
+        movementConnection.start()
+            .then(() => console.log("StockMovements Hub bağlantısı başarılı!"))
+            .catch(err => console.error("StockMovements Hub bağlantı hatası: ", err));
+    });
+</script>

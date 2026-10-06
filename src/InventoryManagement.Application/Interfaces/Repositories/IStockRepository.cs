@@ -21,4 +21,6 @@ public interface IStockRepository
     void Delete(Stock stock);
 
     Task SaveChangesAsync();
+    Task UpdateAsync(Stock stock); // <-- Bu imzanın olduğundan emin ol
+    Task UpdateQuantityAsync(Guid stockId, decimal newQuantity);
 }

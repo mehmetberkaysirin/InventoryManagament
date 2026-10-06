@@ -2,6 +2,22 @@
 
 
   <ItemGroup>
+    <Compile Remove="Areas\**" />
+    <Compile Remove="Filters\**" />
+    <Compile Remove="Middleware\**" />
+    <Content Remove="Areas\**" />
+    <Content Remove="Filters\**" />
+    <Content Remove="Middleware\**" />
+    <EmbeddedResource Remove="Areas\**" />
+    <EmbeddedResource Remove="Filters\**" />
+    <EmbeddedResource Remove="Middleware\**" />
+    <None Remove="Areas\**" />
+    <None Remove="Filters\**" />
+    <None Remove="Middleware\**" />
+  </ItemGroup>
+
+
+  <ItemGroup>
     <ProjectReference Include="..\InventoryManagement.Application\InventoryManagement.Application.csproj" />
     <ProjectReference Include="..\InventoryManagement.Infrastructure\InventoryManagement.Infrastructure.csproj" />
   </ItemGroup>
@@ -16,9 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\" />
-    <Folder Include="Filters\" />
-    <Folder Include="Middleware\" />
     <Folder Include="wwwroot\adminlte\" />
   </ItemGroup>
 

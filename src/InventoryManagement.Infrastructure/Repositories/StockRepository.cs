@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
 using InventoryManagement.Application.Interfaces.Repositories;
 using InventoryManagement.Domain.Entities;
 using InventoryManagement.Infrastructure.Data;
@@ -23,16 +20,16 @@ public class StockRepository : IStockRepository
     public async Task<List<Stock>> GetAllAsync()
     {
         return await _context.Stocks
-            .Include(x => x.Product)
-            .Include(x => x.Warehouse)
+            .Include(x => x.Product)     // Ürün adını getirmesi için şart
+            .Include(x => x.Warehouse)   // Depo adını getirmesi için şart
             .Where(x => !x.IsDeleted)
-            .AsNoTracking()
             .ToListAsync();
     }
 
     public async Task<Stock?> GetByIdAsync(Guid id)
     {
         return await _context.Stocks
+            .AsNoTracking() // <-- İŞTE BURASI! EF Core bu stoğu hafızasında takip etmesin.
             .FirstOrDefaultAsync(x => x.Id == id && !x.IsDeleted);
     }
 
@@ -46,6 +43,13 @@ public class StockRepository : IStockRepository
         _context.Stocks.Update(stock);
     }
 
+    public async Task UpdateAsync(Stock stock)
+    {
+        // Standart EF Core tracking güncellemesi (ExecuteUpdateAsync yerine bu kullanılır)
+        _context.Stocks.Update(stock);
+        await Task.CompletedTask; // async imzasını korumak için
+    }
+
     public void Delete(Stock stock)
     {
         stock.IsDeleted = true;
@@ -55,5 +59,16 @@ public class StockRepository : IStockRepository
     public async Task SaveChangesAsync()
     {
         await _context.SaveChangesAsync();
+    }
+    public async Task UpdateQuantityAsync(Guid stockId, decimal newQuantity)
+    {
+        await _context.Stocks
+            .Where(s => s.Id == stockId)
+            .ExecuteUpdateAsync(s => s.SetProperty(st => st.Quantity, newQuantity));
+    }
+    public async Task<Stock?> GetByProductAndWarehouseAsync(Guid productId, Guid warehouseId)
+    {
+        return await _context.Stocks
+            .FirstOrDefaultAsync(s => s.ProductId == productId && s.WarehouseId == warehouseId);
     }
 }

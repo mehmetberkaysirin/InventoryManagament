@@ -174,4 +174,31 @@
             });
         });
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Ana sayfa için SignalR bağlantısı
+        const dashboardConnection = new signalR.HubConnectionBuilder()
+            .withUrl("/stockHub")
+            .build();
+
+        // 1. Stok değiştiğinde ana sayfayı (grafikleri) yenile
+        dashboardConnection.on("ReceiveStockUpdate", function () {
+            console.log("Stok güncellendi, ana sayfa ve grafikler yenileniyor...");
+            location.reload();
+        });
+
+        // 2. Stok hareketi değiştiğinde ana sayfayı (grafikleri) yenile
+        dashboardConnection.on("ReceiveStockMovementUpdate", function () {
+            console.log("Stok hareketi güncellendi, ana sayfa ve grafikler yenileniyor...");
+            location.reload();
+        });
+
+        // Bağlantıyı başlat
+        dashboardConnection.start()
+            .then(() => console.log("Dashboard SignalR bağlantısı aktif!"))
+            .catch(err => console.error("Dashboard SignalR Hatası: ", err));
+    });
+</script>
 }

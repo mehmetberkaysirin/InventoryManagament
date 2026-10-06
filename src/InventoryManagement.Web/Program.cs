@@ -8,6 +8,7 @@ using InventoryManagement.Application.Interfaces.Repositories;
 using InventoryManagement.Application.Interfaces.Services;
 using InventoryManagement.Application.Services;
 using InventoryManagement.Infrastructure.Repositories;
+using InventoryManagement.Web.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,6 +69,8 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddProfile<StockMovementProfile>();
 });
 
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
 // 1. SEED DATA TETİKLEME (Uygulama ayağa kalkarken verileri basar)
@@ -107,6 +110,9 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+// SignalR Hub Endpoint Tanımı
+app.MapHub<StockHub>("/stockHub");
 
 // Tek ve doğru app.Run() en sonda!
 app.Run();

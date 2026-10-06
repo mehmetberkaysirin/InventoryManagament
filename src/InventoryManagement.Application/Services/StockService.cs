@@ -17,6 +17,7 @@ public class StockService : IStockService
     private readonly IStockRepository _stockRepository;
     private readonly IMapper _mapper;
 
+
     public StockService(
         IStockRepository stockRepository,
         IMapper mapper)
@@ -44,11 +45,29 @@ public class StockService : IStockService
 
     public async Task CreateAsync(StockCreateDto dto)
     {
-        var stock = _mapper.Map<Stock>(dto);
+        // 1. Mevcut stokları çekip LINQ ile bu ürün ve depo kombinasyonu var mı diye bakıyoruz
+        var allStocks = await _stockRepository.GetAllAsync();
+        var existingStock = allStocks.FirstOrDefault(s => s.ProductId == dto.ProductId && s.WarehouseId == dto.WarehouseId);
 
-        stock.CreatedAt = DateTime.UtcNow;
+        if (existingStock != null)
+        {
+            // 2A. ZATEN VARSA: Miktarını güncelliyoruz (Update)
+            existingStock.Quantity += dto.Quantity;
+            existingStock.UpdatedAt = DateTime.UtcNow;
 
-        await _stockRepository.AddAsync(stock);
+            _stockRepository.Update(existingStock);
+        }
+        else
+        {
+            // 2B. YOKSA: Sıfırdan ekliyoruz (Insert)
+            var stock = _mapper.Map<Stock>(dto);
+            stock.Id = Guid.NewGuid();
+            stock.CreatedAt = DateTime.UtcNow;
+
+            await _stockRepository.AddAsync(stock);
+        }
+
+        // Değişiklikleri kaydediyoruz, böylece SignalR ve ekran patlamadan çalışacak
         await _stockRepository.SaveChangesAsync();
     }
 
@@ -79,5 +98,10 @@ public class StockService : IStockService
         _stockRepository.Delete(stock);
 
         await _stockRepository.SaveChangesAsync();
+    }
+    public async Task<Stock?> GetByProductAndWarehouseAsync(Guid productId, Guid warehouseId)
+    {
+        var allStocks = await _stockRepository.GetAllAsync();
+        return allStocks.FirstOrDefault(s => s.ProductId == productId && s.WarehouseId == warehouseId);
     }
 }

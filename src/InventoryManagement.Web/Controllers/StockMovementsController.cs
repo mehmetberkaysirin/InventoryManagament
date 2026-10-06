@@ -1,7 +1,9 @@
 ﻿using InventoryManagement.Application.DTOs.StockMovements;
 using InventoryManagement.Application.Interfaces.Services;
+using InventoryManagement.Web.Hubs;
 using InventoryManagement.Web.ViewModels.StockMovements;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -12,13 +14,16 @@ public class StockMovementsController : Controller
 {
     private readonly IStockMovementService _stockMovementService;
     private readonly IStockService _stockService;
+    private readonly IHubContext<StockHub> _hubContext;
 
     public StockMovementsController(
         IStockMovementService stockMovementService,
-        IStockService stockService)
+        IStockService stockService,
+        IHubContext<StockHub> hubContext)
     {
         _stockMovementService = stockMovementService;
         _stockService = stockService;
+        _hubContext = hubContext;
     }
 
     public async Task<IActionResult> Index()
@@ -68,6 +73,9 @@ public class StockMovementsController : Controller
         };
 
         await _stockMovementService.CreateAsync(dto);
+
+        // Stok hareketi eklendiğinde anlık olarak SignalR tetiklenir
+        await _hubContext.Clients.All.SendAsync("ReceiveStockMovementUpdate");
 
         return RedirectToAction(nameof(Index));
     }
