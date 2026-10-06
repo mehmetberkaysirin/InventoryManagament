@@ -1,16 +1,20 @@
-using InventoryManagement.Infrastructure.Data;
-using InventoryManagement.Infrastructure.Identity;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using AutoMapper;
-using InventoryManagement.Application.Mapping;
 using InventoryManagement.Application.Interfaces.Repositories;
 using InventoryManagement.Application.Interfaces.Services;
+using InventoryManagement.Application.Mapping;
 using InventoryManagement.Application.Services;
+using InventoryManagement.Infrastructure.Data;
+using InventoryManagement.Infrastructure.Identity;
 using InventoryManagement.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using InventoryManagement.Web.Hubs;
+using InventoryManagement.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// SignalR Servisi (Eksik olan ve hataya sebep olan kayıt buradaydı)
+builder.Services.AddSignalR();
 
 // DbContext Kaydı
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -57,6 +61,7 @@ builder.Services.AddScoped<IStockService, StockService>();
 builder.Services.AddScoped<IStockMovementRepository, StockMovementRepository>();
 builder.Services.AddScoped<IStockMovementService, StockMovementService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
+builder.Services.AddScoped<IStockNotifier, StockNotifier>();
 
 builder.Services.AddAutoMapper(cfg =>
 {
@@ -68,8 +73,6 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddProfile<StockProfile>();
     cfg.AddProfile<StockMovementProfile>();
 });
-
-builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -99,7 +102,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles(); // Veya app.MapStaticAssets();
+app.UseStaticFiles();
 
 app.UseRouting();
 
@@ -111,8 +114,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// SignalR Hub Endpoint Tanımı
+// SignalR Hub Endpoint Mapping (Eksikse eklenmeli, eğer Hub Map'lemediysen ekle)
 app.MapHub<StockHub>("/stockHub");
 
-// Tek ve doğru app.Run() en sonda!
 app.Run();
